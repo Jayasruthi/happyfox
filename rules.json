@@ -1,0 +1,68 @@
+[
+    {
+        "predicate": "all",
+        "conditions": [
+            {
+                "field": "Subject",
+                "predicate": "contains",
+                "value": "Happy"
+            },
+            {
+                "field": "To",
+                "predicate": "contains",
+                "value": "jaya"
+            }
+        ],
+        "actions": [
+            {
+                "type" : "mark",
+                "value": "READ"
+            },
+            {
+                "type" : "move",
+                "value": "INTERVIEW"
+            }
+        ]
+    },
+    {
+        "predicate": "any",
+        "conditions": [
+            {
+                "field": "body",
+                "predicate": "contains",
+                "value": "SPECIAL OFFER"
+            },
+            {
+                "field": "body",
+                "predicate": "contains",
+                "value": "sale"
+            }
+        ],
+        "actions": [
+            {
+                "type" : "move",
+                "value": "SPECIAL SALE"
+            }
+        ]
+    },
+    {
+        "predicate": "all",
+        "conditions": [
+            {
+                "field": "received_at",
+                "predicate": "less_than",
+                "value": "1 day"
+            }
+        ],
+        "actions": [
+            {
+                "type" : "mark",
+                "value": "UNREAD"
+            },
+            {
+                "type" : "move",
+                "value": "RECENT"
+            }
+        ]
+    }
+]
