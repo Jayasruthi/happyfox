@@ -29,19 +29,19 @@ Rules are run in sequential order. Later rules override results of previous rule
 ## Implementation
 ### gmailutils.py
 * Configurable constants for Gmail authentication, PostgreSQL connection, and Table creation
-* Fetches the first 100 emails in readOnly mode
-* Gracefully handles errors during table row creation
+* Fetches the first 100 emails in modify mode
+* Handles new label creation, marking emails as read or unread, and applying labels
 ### ruleprocessor.py
 * Optimized select query generation based on conditions and predicates instead running every rule on all emails
-* Has Mapping for field names to column names, and converts conditions to correct PSQL syntax
-* Error handling and logging for database operations
+* Handles mapping for field names to column names, and converts conditions to correct PSQL syntax
 ### dbutils.py
-* Contains all functions to perform database operations such as table creation and storing emails in the table
+* Contains all functions to perform database operations – table creation and storing emails in the table
+* Gracefully handles errors during table row creation
 ### processemails.py
 * Main script that uses above three scripts to fetch emails, store in database and apply actions to emails based on rules
  
 ## Future Work
-* Improve error handling such as adding a validation checker for rules.json.
-* Enhance rule engine to support more complex conditions and actions.
-* Implement scheduling and automation for periodic email fetching and processing.
+* Improve error handling such as adding a validation checker for rules.json
+* Enhance rule engine to support more complex conditions and actions
+* Implement scheduling and automation for periodic email fetching and processing
 * Improve test coverage
