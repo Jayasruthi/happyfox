@@ -22,20 +22,24 @@ Rules are run in sequential order. Later rules override results of previous rule
 * Set up the Gmail API client and save `credentials.json` to your project directory.
 * Configure the PostgreSQL connection details in `constants.py`.
 * Define rules for processing emails in a file, and update the path in constants.py.
-* Run `python3 getemails.py`. You will be prompted to login with Gmail when running the script for the first time.
+* Run `python3 processemails.py`. You will be prompted to login with Gmail when running the script for the first time.
 * Verify database and table was created in PSQL console. You can configure the table name in constants.py
-* Run `python3 processrules.py`. Check logs and PSQL console to verify rules were applied correctly.
+* Check logs and Gmail console to verify rules were applied correctly.
 
 ## Implementation
-### getemails.py
+### gmailutils.py
 * Configurable constants for Gmail authentication, PostgreSQL connection, and Table creation
 * Fetches the first 100 emails in readOnly mode
 * Gracefully handles errors during table row creation
-### processrules.py
+### ruleprocessor.py
 * Optimized select query generation based on conditions and predicates instead running every rule on all emails
 * Has Mapping for field names to column names, and converts conditions to correct PSQL syntax
 * Error handling and logging for database operations
-
+### dbutils.py
+* Contains all functions to perform database operations such as table creation and storing emails in the table
+### processemails.py
+* Main script that uses above three scripts to fetch emails, store in database and apply actions to emails based on rules
+ 
 ## Future Work
 * Improve error handling such as adding a validation checker for rules.json.
 * Enhance rule engine to support more complex conditions and actions.
